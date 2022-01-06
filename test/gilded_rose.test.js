@@ -3,6 +3,7 @@ const {Shop, Item} = require("../src/gilded_rose");
 describe("Gilded Rose", function() {
   
   describe("quality update for generic items", function() {
+    
     it("decreases quality by 1", function() {
       const shop = new Shop([new Item("item", 20, 1)]);
       const items = shop.updateQuality();
