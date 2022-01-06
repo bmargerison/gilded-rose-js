@@ -36,5 +36,11 @@ describe("Gilded Rose", function() {
     const items = shop.updateQuality();
     expect(items[0].quality).toBe(2);
   });
+
+  it("Backstage passes increases in quality", function() {
+    const shop = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 20, 1)]);
+    const items = shop.updateQuality();
+    expect(items[0].quality).toBe(2);
+  });
 });
 
