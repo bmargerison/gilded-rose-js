@@ -1,8 +1,14 @@
 const {Shop, Item} = require("../src/gilded_rose");
 
 describe("Gilded Rose", function() {
-  it("increases quality by 1", function() {
+  it("decreases quality by 1", function() {
     const shop = new Shop([new Item("item", 20, 1)]);
+    const items = shop.updateQuality();
+    expect(items[0].quality).toBe(0);
+  });
+
+  it("decreases quality by 2 if sell by date has passed", function() {
+    const shop = new Shop([new Item("item", 0, 2)]);
     const items = shop.updateQuality();
     expect(items[0].quality).toBe(0);
   });
