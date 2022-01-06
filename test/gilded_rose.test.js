@@ -25,10 +25,16 @@ describe("Gilded Rose", function() {
     expect(items[0].quality).toBe(1);
   });
 
-  it("Aged Brie increases in quality", function() {
+  it("the quality of an item cannot go above 50", function() {
     const shop = new Shop([new Item("Aged Brie", 20, 50)]);
     const items = shop.updateQuality();
     expect(items[0].quality).toBe(50);
+  });
+
+  it("the quality of Sulfuras does not change", function() {
+    const shop = new Shop([new Item("Sulfuras, Hand of Ragnaros", 20, 2)]);
+    const items = shop.updateQuality();
+    expect(items[0].quality).toBe(2);
   });
 });
 
