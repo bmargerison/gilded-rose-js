@@ -12,5 +12,11 @@ describe("Gilded Rose", function() {
     const items = shop.updateQuality();
     expect(items[0].quality).toBe(0);
   });
+
+  it("the quality of an item cannot be negative", function() {
+    const shop = new Shop([new Item("item", 20, 0)]);
+    const items = shop.updateQuality();
+    expect(items[0].quality).toBe(0);
+  });
 });
 
