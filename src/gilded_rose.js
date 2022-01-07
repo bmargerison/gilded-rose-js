@@ -10,60 +10,68 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
+
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      
       switch (this.items[i].name) {
-        
         case 'Aged Brie':
-          this.items[i].sellIn--;
-          if (this.items[i].quality < 50) {
-            this.items[i].quality++;
-          };
+          this.updateAgedBrie(this.items[i])
           break;
-
         case 'Backstage passes to a TAFKAL80ETC concert':
-          this.items[i].sellIn--;
-          if (this.items[i].sellIn < 0) {
-            this.items[i].quality = 0;
-          };
-          if (this.items[i].quality < 50) {
-            this.items[i].quality++;
-              if (this.items[i].sellIn < 11) {
-                if (this.items[i].quality < 50) {
-                  this.items[i].quality++;
-                }
-              }
-              if (this.items[i].sellIn < 6) {
-                if (this.items[i].quality < 50) {
-                  this.items[i].quality++;
-                }
-              }
-          };
-          if (this.items[i].sellIn < 0) {
-            this.items[i].quality = 0;
-          };
+          this.updateBackstagePasses(this.items[i])
           break;
-
         case 'Sulfuras, Hand of Ragnaros':
           break;
-
         default:
-          this.items[i].sellIn--;
-          if (this.items[i].quality > 0) {
-            this.items[i].quality--;
-            if (this.items[i].quality > 0) {
-              if (this.items[i].sellIn < 0) {
-                this.items[i].quality--;
-              }
-            }
-          }
-        }
-        
+          this.updateItem(this.items[i])
       }
+    }
 
     return this.items;
   }
+
+  updateAgedBrie(item) {
+    item.sellIn--;
+    if (item.quality < 50) {
+      item.quality++;
+    };
+  };
+
+  updateBackstagePasses(item) {
+    item.sellIn--;
+    if (item.sellIn < 0) {
+      item.quality = 0;
+    }
+    if (item.quality < 50) {
+      item.quality++;
+        if (item.sellIn < 11) {
+          if (item.quality < 50) {
+            item.quality++;
+          }
+        }
+        if (item.sellIn < 6) {
+          if (item.quality < 50) {
+            item.quality++;
+          }
+        }
+    }
+    if (item.sellIn < 0) {
+      item.quality = 0;
+    }
+  };
+
+  updateItem(item) {
+    item.sellIn--;
+    if (item.quality > 0) {
+      item.quality--;
+      if (item.quality > 0) {
+        if (item.sellIn < 0) {
+          item.quality--;
+        }
+      }
+    }
+  }
+
 }
 
 module.exports = {
